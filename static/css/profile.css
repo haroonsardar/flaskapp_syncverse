@@ -1,0 +1,548 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root{
+  --color-default:#004f83;
+  --color-second:#0067ac;
+  --color-white:#fff;
+  --color-body:#e4e9f7;
+  --color-light:#e0e0e0;
+}
+
+
+*{
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  min-height: 100vh;
+}
+
+.sidebar{
+  min-height: 100vh;
+  width: 78px;
+  padding: 6px 14px;
+  z-index: 99;
+  background-color: var(--color-default);
+  transition: all .5s ease;
+  position: fixed;
+  top:0;
+  left: 0;
+}
+
+.sidebar.open{
+  width: 250px;
+}
+
+.sidebar .logo_details{
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.sidebar .logo_details .icon{
+  opacity: 0;
+  transition: all 0.5s ease ;
+}
+
+
+
+.sidebar .logo_details .logo_name{
+  color:var(--color-white);
+  font-size: 22px;
+  font-weight: 600;
+  opacity: 0;
+  transition: all .5s ease;
+}
+
+.sidebar.open .logo_details .icon,
+.sidebar.open .logo_details .logo_name{
+  opacity: 1;
+}
+
+.sidebar .logo_details #btn{
+  position: absolute;
+  top:50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+.sidebar.open .logo_details #btn{
+  text-align: right;
+}
+
+.sidebar i{
+  color:var(--color-white);
+  height: 60px;
+  line-height: 60px;
+  min-width: 50px;
+  font-size: 25px;
+  text-align: center;
+}
+
+.sidebar .nav-list{
+  margin-top: 20px;
+  height: 100%;
+}
+
+.sidebar li{
+  position: relative;
+  margin:8px 0;
+  list-style: none;
+}
+
+.sidebar li .tooltip{
+  position: absolute;
+  top:-20px;
+  left:calc(100% + 15px);
+  z-index: 3;
+  background-color: var(--color-white);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 14px;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar li:hover .tooltip{
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  top:50%;
+  transform: translateY(-50%);
+}
+
+.sidebar.open li .tooltip{
+  display: none;
+}
+
+.sidebar input{
+  font-size: 15px;
+  color: var(--color-white);
+  font-weight: 400;
+  outline: none;
+  height: 35px;
+  width: 35px;
+  border:none;
+  border-radius: 5px;
+  background-color: var(--color-second);
+  transition: all .5s ease;
+}
+
+.sidebar input::placeholder{
+  color:var(--color-light)
+}
+
+.sidebar.open input{
+  width: 100%;
+  padding: 0 20px 0 50px;
+}
+
+.sidebar .bx-search{
+  position: absolute;
+  top:50%;
+  left:0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  background-color: var(--color-second);
+  color: var(--color-white);
+}
+
+.sidebar li a{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  text-decoration: none;
+  background-color: var(--color-default);
+  position: relative;
+  transition: all .5s ease;
+  z-index: 12;
+}
+
+.sidebar li a::after{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  background-color: var(--color-white);
+  border-radius: 5px;
+  transition: transform 0.3s ease-in-out;
+  transform-origin: left;
+  z-index: -2;
+}
+
+.sidebar li a:hover::after{
+  transform: scaleX(1);
+  color:var(--color-default)
+}
+
+.sidebar li a .link_name{
+  color:var(--color-white);
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.sidebar li a:hover .link_name,
+.sidebar li a:hover i{
+  transition: all 0.5s ease;
+  color:var(--color-default)
+}
+
+.sidebar.open li a .link_name{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar li i{
+  height: 35px;
+  line-height: 35px;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.sidebar li.profile{
+  position: fixed;
+  height: 60px;
+  width: 78px;
+  left: 0;
+  bottom:-8px;
+  padding:10px 14px;
+  overflow: hidden;
+  transition: all .5s ease;
+}
+
+.sidebar.open li.profile{
+  width: 250px;
+}
+
+.sidebar .profile .profile_details{
+  display: flex;
+  align-items: center;
+  flex-wrap:  nowrap;
+}
+
+.sidebar li img{
+  height: 45px;
+  width: 45px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.sidebar li.profile .name,
+.sidebar li.profile .designation{
+  font-size: 15px;
+  font-weight: 400;
+  color:var(--color-white);
+  white-space: nowrap;
+}
+
+.sidebar li.profile .designation{
+  font-size: 12px;
+}
+
+.sidebar .profile #log_out{
+  position: absolute;
+  top:50%;
+  right: 0;
+  transform: translateY(-50%);
+  background-color: var(--color-second);
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.sidebar.open .profile #log_out{
+  width: 50px;
+  background: none;
+}
+
+.home-section{
+  position: relative;
+  background-color: var(--color-body);
+  min-height: 100vh;
+  top:0;
+  left:78px;
+  width: calc(100% - 78px);
+  transition: all .5s ease;
+  z-index: 2;
+}
+
+.home-section .text{
+  display: inline-block;
+  color:var(--color-default);
+  font-size: 25px;
+  font-weight: 500;
+  margin: 18px;
+}
+
+.sidebar.open ~ .home-section{
+  left:250px;
+  width: calc(100% - 250px);
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 30px;
+    background: linear-gradient(135deg, #e9eef5, #f5f6fa);
+    transition: margin-left 0.5s ease;
+    margin-left: 78px;
+    color: #4b4e6d;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar.open ~ .main-content {
+    margin-left: 250px;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+    }
+    .sidebar.open {
+        width: 200px;
+    }
+    .main-content {
+        margin-left: 60px;
+    }
+    .sidebar.open ~ .main-content {
+        margin-left: 200px;
+    }
+}
+
+/* Profile Section */
+.profile-section {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+    transition: transform 0.3s ease;
+    animation: fade-in 1.5s ease;
+    overflow: auto;
+}
+
+.profile-section:hover {
+    transform: translateY(-2px);
+}
+
+.profile-info,
+.profile-edit {
+    margin-bottom: 20px;
+}
+
+.profile-info label,
+.profile-edit label {
+    display: block;
+    font-size: 1em;
+    color: #6b7280;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.profile-info p,
+.profile-edit input {
+    font-size: 1.2em;
+    color: #333;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    background-color: #fafafa;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-info p {
+    background-color: #f8f9fa;
+}
+
+.profile-edit input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    outline: none;
+}
+
+/* Buttons */
+.edit-profile-button,
+.save-profile-button {
+    padding: 12px 20px;
+    background-color: #4b4e6d;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit-profile-button:hover,
+.save-profile-button:hover {
+    background-color: #3b3d5c;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Animations */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* Main Content Header */
+.main-content header h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #0067ac;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+}
+
+/* Centering the Header with a Border Underline */
+.main-content header h1::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 4px;
+    background-color: #007bff;
+    margin: 10px auto 0;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+/* Header Shadow Effect */
+.main-content header h1 {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.main-content header h1:hover::after {
+    width: 80px; /* Expands underline on hover */
+}
+
+
+/* Make sure the body takes up full height */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  min-height: 100%;  /* Ensures the wrapper takes up at least the full height of the page */
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex-grow: 1; /* Ensures the content area grows to take up space */
+}
+
+/* Footer Styling */
+    /* Ensure the body takes up full height */
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    .wrapper {
+      min-height: 100%;  /* Ensures the wrapper takes up at least the full height of the page */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      flex-grow: 1; /* Ensures the content area grows to take up space */
+    }
+
+    /* Footer Styling */
+    .footer {
+      background-color: var(--color-default, #333);
+      color: var(--color-white, #fff);
+      padding: 40px 0;
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer-content h3 {
+      font-size: 1.8rem;
+      color: var(--color-white, #fff);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .footer-content p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      color: var(--color-light, #aaa);
+    }
+
+    .footer .socials {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .footer .socials li {
+      display: inline-block;
+    }
+
+    .footer .socials a {
+      color: var(--color-white, #fff);
+      font-size: 1.8rem; /* Adjust the icon size */
+      transition: color 0.3s ease;
+    }
+
+    .footer .socials a:hover {
+      color: var(--color-second, #f39c12); /* Social icon hover color */
+    }
+
+    .footer .socials i {
+      display: block; /* Makes sure the icon is centered */
+    }
+
+    .footer-bottom {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: var(--color-light, #aaa);
+    }
+
+    .footer-bottom p {
+      margin: 0;
+    }

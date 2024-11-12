@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta tags for character encoding and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | SyncVerse App</title>
+
+    <!-- Link to the main CSS file for dashboard styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <!-- Icons libraries -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- JavaScript file for dashboard functionalities -->
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</head>
+
+<body>
+    <!-- Sidebar navigation menu -->
+    <div class="sidebar">
+        <div class="logo_details">
+            <i class="bx bxl-audible icon"></i>
+            <div class="logo_name">SyncVerse</div>
+            <i class="bx bx-menu" id="btn"></i>
+        </div>
+        <ul class="nav-list">
+            <!-- Search bar within the sidebar -->
+            <li>
+                <i class="bx bx-search"></i>
+                <input type="text" placeholder="Search...">
+                <span class="tooltip">Search</span>
+            </li>
+            <!-- Links for navigating to Dashboard, Profile, and Logout -->
+            <li>
+                <a href="/dashboard">
+                    <i class="bx bx-grid-alt"></i>
+                    <span class="link_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="/profile">
+                    <i class="bx bx-user"></i>
+                    <span class="link_name">Profile</span>
+                </a>
+                <span class="tooltip">Profile</span>
+            </li>
+            <li>
+                <a href="{{ url_for('logout') }}">
+                    <i class="bx bx-log-out"></i>
+                    <span class="link_name">Logout</span>
+                </a>
+                <span class="tooltip">Logout</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main content area -->
+    <main class="main-content">
+        <!-- Page header -->
+        <header>
+            <center><h1>Welcome to SyncVerse Dashboard</h1></center>
+
+            <!-- Button to download SyncVerse setup file, centered on the page -->
+            <div class="button-container">
+                <button class="open-modal-btn" onclick="openModal()">Click to Download SyncVerse SetUp</button>
+            </div>
+        </header>
+
+        <!-- Upload and Sync Section -->
+        <section class="upload-section">
+            <h2>Upload Video and Audio for Syncing</h2>
+            <div class="upload-container">
+                <label for="video-upload">Upload Video:</label>
+                <input type="file" id="video-upload" accept="video/*">
+            </div>
+            <div class="upload-container">
+                <label for="audio-upload">Upload Audio:</label>
+                <input type="file" id="audio-upload" accept="audio/*">
+            </div>
+            <!-- Button to start the syncing process and redirect to result page -->
+            <button class="sync-button" onclick="startSyncverse()">Start SyncVerse</button>
+
+            <!-- JavaScript function to redirect to the result page when syncing starts -->
+            <script>
+                function startSyncverse() {
+                    window.location.href = "/result";  // Redirect to the "result" page
+                }
+            </script>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>SyncVerse</h3>
+            <p>Syncverse: Your Voice, Perfectly Synced</p>
+            <ul class="socials">
+                <!-- Social media links -->
+                <li><a href="https://www.facebook.com/haroon.baloshi.868"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="https://www.instagram.com/haroon_baloshi/"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/haroon-sardar-4093152b9"><i class="fab fa-linkedin-in"></i></a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SyncVerse App | Designed by Haroon Sardar</p>
+        </div>
+    </footer>
+</body>
+
+</html>

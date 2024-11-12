@@ -1,0 +1,620 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root{
+  --color-default:#004f83;
+  --color-second:#0067ac;
+  --color-white:#fff;
+  --color-body:#e4e9f7;
+  --color-light:#e0e0e0;
+}
+
+
+*{
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  min-height: 100vh;
+}
+
+.sidebar{
+  min-height: 100vh;
+  width: 78px;
+  padding: 6px 14px;
+  z-index: 99;
+  background-color: var(--color-default);
+  transition: all .5s ease;
+  position: fixed;
+  top:0;
+  left: 0;
+}
+
+.sidebar.open{
+  width: 250px;
+}
+
+.sidebar .logo_details{
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.sidebar .logo_details .icon{
+  opacity: 0;
+  transition: all 0.5s ease ;
+}
+
+
+
+.sidebar .logo_details .logo_name{
+  color:var(--color-white);
+  font-size: 22px;
+  font-weight: 600;
+  opacity: 0;
+  transition: all .5s ease;
+}
+
+.sidebar.open .logo_details .icon,
+.sidebar.open .logo_details .logo_name{
+  opacity: 1;
+}
+
+.sidebar .logo_details #btn{
+  position: absolute;
+  top:50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+.sidebar.open .logo_details #btn{
+  text-align: right;
+}
+
+.sidebar i{
+  color:var(--color-white);
+  height: 60px;
+  line-height: 60px;
+  min-width: 50px;
+  font-size: 25px;
+  text-align: center;
+}
+
+.sidebar .nav-list{
+  margin-top: 20px;
+  height: 100%;
+}
+
+.sidebar li{
+  position: relative;
+  margin:8px 0;
+  list-style: none;
+}
+
+.sidebar li .tooltip{
+  position: absolute;
+  top:-20px;
+  left:calc(100% + 15px);
+  z-index: 3;
+  background-color: var(--color-white);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 14px;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar li:hover .tooltip{
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  top:50%;
+  transform: translateY(-50%);
+}
+
+.sidebar.open li .tooltip{
+  display: none;
+}
+
+.sidebar input{
+  font-size: 15px;
+  color: var(--color-white);
+  font-weight: 400;
+  outline: none;
+  height: 35px;
+  width: 35px;
+  border:none;
+  border-radius: 5px;
+  background-color: var(--color-second);
+  transition: all .5s ease;
+}
+
+.sidebar input::placeholder{
+  color:var(--color-light)
+}
+
+.sidebar.open input{
+  width: 100%;
+  padding: 0 20px 0 50px;
+}
+
+.sidebar .bx-search{
+  position: absolute;
+  top:50%;
+  left:0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  background-color: var(--color-second);
+  color: var(--color-white);
+}
+
+.sidebar li a{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  text-decoration: none;
+  background-color: var(--color-default);
+  position: relative;
+  transition: all .5s ease;
+  z-index: 12;
+}
+
+.sidebar li a::after{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  background-color: var(--color-white);
+  border-radius: 5px;
+  transition: transform 0.3s ease-in-out;
+  transform-origin: left;
+  z-index: -2;
+}
+
+.sidebar li a:hover::after{
+  transform: scaleX(1);
+  color:var(--color-default)
+}
+
+.sidebar li a .link_name{
+  color:var(--color-white);
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.sidebar li a:hover .link_name,
+.sidebar li a:hover i{
+  transition: all 0.5s ease;
+  color:var(--color-default)
+}
+
+.sidebar.open li a .link_name{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar li i{
+  height: 35px;
+  line-height: 35px;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.sidebar li.profile{
+  position: fixed;
+  height: 60px;
+  width: 78px;
+  left: 0;
+  bottom:-8px;
+  padding:10px 14px;
+  overflow: hidden;
+  transition: all .5s ease;
+}
+
+.sidebar.open li.profile{
+  width: 250px;
+}
+
+.sidebar .profile .profile_details{
+  display: flex;
+  align-items: center;
+  flex-wrap:  nowrap;
+}
+
+.sidebar li img{
+  height: 45px;
+  width: 45px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.sidebar li.profile .name,
+.sidebar li.profile .designation{
+  font-size: 15px;
+  font-weight: 400;
+  color:var(--color-white);
+  white-space: nowrap;
+}
+
+.sidebar li.profile .designation{
+  font-size: 12px;
+}
+
+.sidebar .profile #log_out{
+  position: absolute;
+  top:50%;
+  right: 0;
+  transform: translateY(-50%);
+  background-color: var(--color-second);
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.sidebar.open .profile #log_out{
+  width: 50px;
+  background: none;
+}
+
+.home-section{
+  position: relative;
+  background-color: var(--color-body);
+  min-height: 100vh;
+  top:0;
+  left:78px;
+  width: calc(100% - 78px);
+  transition: all .5s ease;
+  z-index: 2;
+}
+
+.home-section .text{
+  display: inline-block;
+  color:var(--color-default);
+  font-size: 25px;
+  font-weight: 500;
+  margin: 18px;
+}
+
+.sidebar.open ~ .home-section{
+  left:250px;
+  width: calc(100% - 250px);
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  background: linear-gradient(135deg, #e9eef5, #f5f6fa);
+  color: #4b4e6d;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  animation: fade-in 1.2s ease;
+  transition: background-color 0.3s, color 0.3s, margin-left 0.5s ease;
+  margin-left: 78px;
+}
+
+.sidebar.open ~ .main-content {
+  margin-left: 250px;
+}
+
+/* Main Content Header */
+.main-content header h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: var(--color-default);
+  text-align: center;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 8px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Centering the Header with a Border Underline */
+.main-content header h1::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 4px;
+  background-color: #007bff;
+  margin: 10px auto 0;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.main-content header h1:hover::after {
+  width: 80px; /* Expands underline on hover */
+}
+
+/* Fade-in animation */
+@keyframes fade-in {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+
+/* Refined Upload Section */
+.upload-section {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  animation: fade-in 1.5s ease;
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.upload-section:hover {
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2); /* Subtle shadow effect on hover */
+}
+
+.upload-section h2 {
+  color: #4b4e6d;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: center; /* Center-align title for better focus */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.upload-section:hover h2 {
+  color: #0056b3; /* Change title color on hover */
+}
+
+.upload-container {
+  margin-bottom: 15px;
+}
+
+.upload-container label {
+  display: block;
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 5px;
+  font-weight: 500;
+  transition: color 0.3s ease; /* Smooth label color transition */
+}
+
+.upload-container label:hover {
+  color: #007bff; /* Change label color on hover */
+}
+
+.upload-container input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fafafa; /* Slightly lighter background */
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.upload-container input[type="file"]:hover {
+  border-color: #007bff; /* Change border color on hover */
+  background-color: #f0f0f0; /* Slightly darker background on hover */
+}
+
+.upload-container input[type="file"]:focus {
+  border-color: #0056b3; /* Darker border on focus */
+  outline: none;
+}
+
+.sync-button {
+  padding: 12px 20px;
+  background-color: #0067ac;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 100%;
+  text-align: center; /* Center-align text inside the button */
+  margin-top: 10px; /* Slight gap between button and file input */
+}
+
+.sync-button:hover {
+  background-color: #0056b3; /* Lighter blue on hover */
+  transform: scale(1.05);
+}
+
+.sync-button:active {
+  background-color: #004080; /* Darker shade on click */
+  transform: scale(1);
+}
+
+/* Centering the open modal button */
+.open-modal-btn {
+  display: block;
+  margin: 50px auto; /* Centers the button horizontally */
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: var(--color-default);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Hover effects for the button */
+.open-modal-btn:hover {
+  background-color: var(--color-second);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Adding ripple effect */
+.open-modal-btn:active {
+  background-color: #004f83; /* Slightly darker */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(2px);
+}
+
+/* Button focus state */
+.open-modal-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0, 111, 179, 0.3); /* Soft blue outline */
+}
+
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Apply the pulse animation */
+.open-modal-btn {
+  animation: pulse 2s infinite;
+}
+
+/* Centered container for button */
+.button-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Button styling */
+.open-modal-btn, .resource-action-btn {
+  padding: 12px 20px;
+  background-color: #0067ac;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.open-modal-btn:hover, .resource-action-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+  color: #aaa;
+  font-size: 24px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+}
+
+/* Footer Styling */
+.footer {
+  background-color: var(--color-default);
+  color: var(--color-white);
+  padding: 40px 0;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content h3 {
+  font-size: 1.8rem;
+  color: var(--color-white);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.footer-content p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: var(--color-light);
+}
+
+.footer .socials {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.footer .socials li {
+  display: inline-block;
+}
+
+.footer .socials a {
+  color: var(--color-white);
+  font-size: 1.3rem;
+  transition: color 0.3s ease;
+}
+
+.footer .socials a:hover {
+  color: var(--color-second); /* Social icon hover color */
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: var(--color-light);
+}
+
+.footer-bottom p {
+  margin: 0;
+}

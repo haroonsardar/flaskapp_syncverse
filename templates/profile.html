@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | SyncVerse App</title>
+    
+    <!-- Link to custom CSS for profile page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    
+    <!-- Icon libraries -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Link to custom JavaScript for profile functionality -->
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+</head>
+<body>
+
+    <!-- Sidebar with navigation links -->
+    <div class="sidebar">
+        <div class="logo_details">
+            <i class="bx bxl-audible icon"></i>
+            <div class="logo_name">SyncVerse</div>
+            <i class="bx bx-menu" id="btn"></i>
+        </div>
+        <ul class="nav-list">
+            <li>
+                <i class="bx bx-search"></i>
+                <input type="text" placeholder="Search...">
+                <span class="tooltip">Search</span>
+            </li>
+            <li>
+                <a href="/dashboard">
+                    <i class="bx bx-grid-alt"></i>
+                    <span class="link_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="/profile">
+                    <i class="bx bx-user"></i>
+                    <span class="link_name">Profile</span>
+                </a>
+                <span class="tooltip">Profile</span>
+            </li>
+            <li>
+                <a href="{{ url_for('logout') }}">
+                    <i class="bx bx-log-out"></i>
+                    <span class="link_name">Logout</span>
+                </a>
+                <span class="tooltip">Logout</span>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <header>
+            <center><h1>User Profile</h1></center>
+        </header>
+        
+        <!-- Profile Information Section -->
+        <section class="profile-section">
+            <div class="profile-info">
+                <label>Name:</label>
+                <p id="user-name">{{ user.name }}</p>
+            </div>
+            <div class="profile-info">
+                <label>Email:</label>
+                <p id="user-email">{{ user.email }}</p>
+            </div>
+            
+            <!-- Button to edit profile details -->
+            <button class="edit-profile-button" onclick="editProfile()">Edit Profile</button>
+
+            <!-- Editable fields shown when editing profile -->
+            <div class="profile-edit" style="display:none;">
+                <label for="name">Edit Name:</label>
+                <input type="text" id="name" value="{{ user.name }}">
+                <label for="email">Edit Email:</label>
+                <input type="email" id="email" value="{{ user.email }}">
+                <button class="save-profile-button" onclick="saveProfile()">Save Changes</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>SyncVerse</h3>
+            <p>Syncverse: Your Voice, Perfectly Synced</p>
+            <ul class="socials">
+                <li><a href="https://www.facebook.com/haroon.baloshi.868"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="https://www.instagram.com/haroon_baloshi/"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/haroon-sardar-4093152b9"><i class="fab fa-linkedin-in"></i></a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 SyncVerse</p>
+        </div>
+    </footer>
+
+</body>
+</html>

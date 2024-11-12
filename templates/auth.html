@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In | Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container" id="container">
+        <!-- Sign Up Form -->
+        <div class="form-container sign-up">
+            <form action="{{ url_for('auth', action='signup') }}" method="POST">
+                <h1>Create Account</h1><br><br>
+                <!-- <div class="social-icons">
+                    <a href="#" class="icon"><i class="bx bxl-facebook"></i></a>
+                    <a href="#" class="icon"><i class="bx bxl-google"></i></a>
+                    <a href="#" class="icon"><i class="bx bxl-linkedin"></i></a>
+                    <a href="#" class="icon"><i class="bx bxl-github"></i></a>
+                </div> -->
+                <!-- <samp>or use your email for registration</samp> -->
+                <input type="text" name="name" placeholder="Name" required />
+                <input type="email" name="email" placeholder="Email" required />
+                <input type="password" name="password" placeholder="Password" required />
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        
+        <!-- Sign In Form -->
+        <div class="form-container sign-in">
+            <form action="{{ url_for('auth', action='login') }}" method="POST">
+                <h1>Sign In</h1><br><br>
+                <!-- <div class="social-icons">
+                    <a href="#" class="icon"><i class="bx bxl-facebook"></i></a>
+                    <a href="#" class="icon"><i class="bx bxl-google"></i></a>
+                    <a href="#" class="icon"><i class="bx bxl-linkedin"></i></a>
+                    <a href="#" class="icon"><i class="bx bxl-github"></i></a>
+                </div> -->
+                <!-- <samp>or use email password</samp> -->
+                <input type="email" name="email" placeholder="Email" required />
+                <input type="password" name="password" placeholder="Password" required />
+                <a href="#" class="fp">Forgot Password?</a>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+
+        <!-- Toggle Panels -->
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome to SyncVerse</h1>
+                    <p>Enter your personal details to use SyncVerse features</p>
+                    <button class="hidden" id="signIn">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend</h1>
+                    <p>Register with your personal details to use SyncVerse features</p>
+                    <button class="hidden" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Toggle Functionality and Flash Message Alert -->
+    <script>
+        const container = document.getElementById('container');
+        document.getElementById('signUp').addEventListener('click', () => {
+            container.classList.add('active');
+        });
+
+        document.getElementById('signIn').addEventListener('click', () => {
+            container.classList.remove('active');
+        });
+
+        // Flash message alert
+        const flashMessage = "{{ get_flashed_messages()[0] if get_flashed_messages() else '' }}";
+        if (flashMessage) {
+            alert(flashMessage);
+        }
+    </script>
+</body>
+</html>
