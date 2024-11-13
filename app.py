@@ -4,6 +4,12 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
+#Deploy App on ng-rok
+from pyngrok import ngrok
+from flask import Flask, request, render_template
+ngrok.set_auth_token("2oNiPImS0sQ4kx4bqftIb18UmPG_5rYh1sjeC4BDQv9VvTCVw")
+public_url = ngrok.connect(5000)
+print("Ngrok URL:", public_url)
 # Initialize the Flask application with specific folders for templates and static files
 app = Flask(__name__, template_folder="templates", static_folder="static")
 app.secret_key = 'your_secret_key'  # Set a secret key for session management and flash messages
@@ -110,4 +116,4 @@ if __name__ == '__main__':
         with app.app_context():
             db.create_all()
             print("Database created successfully!")
-    app.run(debug=True)  # Start the Flask server in debug mode
+    app.run()  # Start the Flask server in debug mode
